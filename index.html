@@ -70,6 +70,9 @@ var CONCERNS={money:"Managing money and debt",house:"Finding housing",well:"Ment
 var CAREER={corp:["Simone Carter ’09","VP of Marketing"],grad:["Marcus Reed ’07","Associate Professor"],tech:["Priya Hall ’12","Engineering Manager"],biz:["Andre Bell ’05","Founder and CEO"],arts:["Nia Brooks ’10","Creative Director"]};
 var BONUS={money:"Draft a 3-month emergency fund plan",house:"Set a rent ceiling at 30% of your take-home pay",well:"Book a first check-in with a counselor",job:"Send 5 applications with mentor feedback",alone:"Attend your first Peer Circle meetup"};
 var PEERS=[["Imani","Biology"],["Devon","Finance"],["Kayla","Computer science"],["Jalen","Communications"]];
+/* SCHOOLS: add a school here. partner:true shows the Partner badge and perk. Replace RES with each school's real offices. */
+var SCHOOLS={"Howard University":{partner:true},"Morehouse College":{},"Spelman College":{},"Hampton University":{partner:true},"North Carolina A&T State University":{},"Norfolk State University":{},"Florida A&M University":{},"Morgan State University":{},"Tuskegee University":{},"Jackson State University":{}};
+var RES=[["Career center","Résumé reviews, employer events, and job boards"],["Financial aid and counseling","Budgeting help and loan exit counseling"],["Counseling and wellness","Campus counseling and referrals in your new city"],["Alumni office","Chapter directory and mentor matching"]];
 var store={};try{store=JSON.parse(localStorage.getItem("cm")||"{}")}catch(e){}
 var S=Object.assign({step:"start",day:100,done:{},tab:"road",mentor:false,name:"",major:"",school:"Howard University",goal:"corp",city:"Atlanta",concern:"money"},store);
 function save(){try{localStorage.setItem("cm",JSON.stringify(S))}catch(e){}}
