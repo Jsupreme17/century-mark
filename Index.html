@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Century Mark: From the Yard to Beyond</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* THEME COLORS (Incredibles): --gold is the main accent (red), --sun is the yellow highlight, --ink is black */
+:root{--bg:#f3f3f5;--card:#fff;--ink:#15151a;--mute:#5a5a68;--gold:#e2231a;--sun:#ffc21a;--goldsoft:#fde1de;--brick:#15151a;--line:#dcdce3;--tick:#d6d6de;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0e12;--card:#1a1a21;--ink:#f5f5f7;--mute:#a8a8b8;--gold:#ff4a3d;--sun:#ffc21a;--goldsoft:#3a1816;--brick:#e2231a;--line:#2e2e38;--tick:#34343f}}
+:root[data-theme="dark"]{--bg:#0e0e12;--card:#1a1a21;--ink:#f5f5f7;--mute:#a8a8b8;--gold:#ff4a3d;--sun:#ffc21a;--goldsoft:#3a1816;--brick:#e2231a;--line:#2e2e38;--tick:#34343f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",Figtree,system-ui,sans-serif;margin:0;line-height:1.15}
+main{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:14px}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn{background:var(--ink);color:var(--bg);border:0;border-radius:10px;padding:12px 20px;font-weight:600}
+.btn.gold{background:var(--gold);color:#fff}
+label{display:block;font-weight:600;margin:14px 0 6px}
+select,input[type=text]{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.hero{text-align:center;padding:8px 0}
+.hero h1{font-size:clamp(2rem,8vw,3.2rem);font-weight:800}
+.hero p{color:var(--mute);max-width:46ch;margin:10px auto 0}
+.ringwrap{position:relative;width:min(300px,82vw);margin:6px auto 0}
+.ringwrap svg{width:100%;display:block}
+.ringtxt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ringtxt b{font:800 3.4rem/1 "Bricolage Grotesque",sans-serif}
+.ringtxt span{color:var(--mute);font-size:.95rem}
+.stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.pill{background:var(--goldsoft);border-radius:99px;padding:6px 14px;font-weight:600;font-size:.92rem}
+nav{display:flex;gap:6px;margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:5px}
+nav button{flex:1;border:0;background:none;padding:10px;border-radius:8px;font-weight:600;color:var(--mute)}
+nav button[aria-selected=true]{background:var(--ink);color:var(--bg)}
+.cat h3{font-size:1.15rem;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cat small{color:var(--mute);font-weight:400}
+.task{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line)}
+.task input{width:22px;height:22px;margin-top:2px;accent-color:var(--gold);flex:none}
+.task span.xp{margin-left:auto;color:var(--gold);font-weight:600;white-space:nowrap}
+.task.done .t{text-decoration:line-through;color:var(--mute)}
+.badge{font-size:.85rem;background:var(--sun);color:#15151a;border-radius:99px;padding:2px 10px;font-weight:600}
+.person{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.av{width:42px;height:42px;border-radius:50%;background:var(--brick);color:#fff;display:grid;place-items:center;font-weight:800;flex:none}
+.person p{margin:0}.person .s{color:var(--mute);font-size:.92rem}
+.msg{margin-left:auto;border:1px solid var(--line);background:none;border-radius:8px;padding:6px 12px;font-weight:600}
+.bar{height:10px;border-radius:9px;background:var(--tick);overflow:hidden;margin:6px 0 14px}
+.bar i{display:block;height:100%;background:var(--gold)}
+.phase{border-left:4px solid var(--gold);padding:4px 0 4px 12px;margin-top:14px}
+.phase b{font-family:"Bricolage Grotesque",sans-serif}
+.demo{color:var(--mute);font-size:.9rem;margin-top:18px}
+.demo input{width:100%;accent-color:var(--gold)}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,40px);opacity:0;background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;font-weight:600;transition:.25s;pointer-events:none}
+#toast.on{transform:translate(-50%,0);opacity:1}
+.note{color:var(--mute);font-size:.88rem;margin-top:16px}
+@media (prefers-reduced-motion:reduce){#toast{transition:none}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+var GOALS={corp:"Corporate career",grad:"Graduate school",tech:"Tech and engineering",biz:"Starting a business",arts:"Media and creative"};
+var CITIES=["Atlanta","Charlotte","Houston","Washington, DC","New York City","Chicago","Dallas"];
+var CONCERNS={money:"Managing money and debt",house:"Finding housing",well:"Mental wellness",job:"Landing the right job",alone:"Feeling alone in a new place"};
+var CAREER={corp:["Simone Carter ’09","VP of Marketing"],grad:["Marcus Reed ’07","Associate Professor"],tech:["Priya Hall ’12","Engineering Manager"],biz:["Andre Bell ’05","Founder and CEO"],arts:["Nia Brooks ’10","Creative Director"]};
+var BONUS={money:"Draft a 3-month emergency fund plan",house:"Set a rent ceiling at 30% of your take-home pay",well:"Book a first check-in with a counselor",job:"Send 5 applications with mentor feedback",alone:"Attend your first Peer Circle meetup"};
+var PEERS=[["Imani","Biology"],["Devon","Finance"],["Kayla","Computer science"],["Jalen","Communications"]];
+var store={};try{store=JSON.parse(localStorage.getItem("cm")||"{}")}catch(e){}
+var S=Object.assign({step:"start",day:100,done:{},tab:"road",mentor:false,name:"",major:"",school:"Howard University",goal:"corp",city:"Atlanta",concern:"money"},store);
+function save(){try{localStorage.setItem("cm",JSON.stringify(S))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function cats(){var c=S.city;return[
+{id:"fin",n:"Financial Launchpad",t:[["Open a high-yield savings account",30],["Build a salary-adjusted budget for "+c,30],["Start a retirement pathway (401k or Roth IRA)",40]]},
+{id:"well",n:"Care and Wellness",t:[["Find a mental health provider in "+c,30],["Transfer your health records",20],["Compare health insurance options",30]]},
+{id:"move",n:"Relocation and Logistics",t:[["Review a sample lease and calculate the deposit",30],["Find the "+c+" alumni chapter on the map",20],["Map 3 neighborhoods and your commute",30]]},
+{id:"pro",n:"Professional Elevation",t:[["Do a speed-mentoring session",30],["Practice a salary negotiation",40],["Join your alumni chapter",20]]},
+{id:"bon",n:"Your bonus quest",t:[[BONUS[S.concern],50]]}]}
+function totals(){var tot=0,got=0;cats().forEach(function(c){c.t.forEach(function(t){tot+=t[1];if(S.done[c.id+t[0]])got+=t[1]})});return{tot:tot,got:got,pct:Math.round(got/tot*100)}}
+function level(p){return p>=100?"Century Mark":p>=34?"Crossing Over":"On the Yard"}
+function phase(){return S.day>75?["Onboarding and diagnostic","Take your transition audit and meet your Peer Circle."]:S.day>34?["Action Labs and setup","Open accounts, review a lease, and line up care in your new city."]:["The crossing and hand-off","Export your Roadmap Portfolio and meet your alumni chapter."]}
+function toast(m){var t=document.getElementById("toast");t.textContent=m;t.className="on";clearTimeout(toast.h);toast.h=setTimeout(function(){t.className=""},1800)}
+function ring(p){var s="";for(var i=0;i<100;i++){var a=(i*3.6-90)*Math.PI/180,c=Math.cos(a),n=Math.sin(a);s+='<line x1="'+(100+c*80).toFixed(1)+'" y1="'+(100+n*80).toFixed(1)+'" x2="'+(100+c*94).toFixed(1)+'" y2="'+(100+n*94).toFixed(1)+'" stroke="'+(i<p?"var(--gold)":"var(--tick)")+'" stroke-width="2.6" stroke-linecap="round"/>'}return'<svg viewBox="0 0 200 200" aria-hidden="true">'+s+'</svg>'}
+function start(){return'<div class="hero"><h1>Century Mark</h1><p>From the Yard to Beyond: your final 100 days at your HBCU, turned into a game you can win.</p></div>'+
+'<div class="card"><h2>Your transition audit</h2><p style="color:var(--mute);margin:6px 0 0">Four quick answers build your personal 100-day roadmap.</p>'+
+'<label for="nm">First name</label><input type="text" id="nm" value="'+esc(S.name)+'" autocomplete="given-name">'+
+'<label for="mj">Major</label><input type="text" id="mj" value="'+esc(S.major)+'" placeholder="For example, Computer science">'+
+'<label for="sc">Your school</label>'+sel("sc",Object.keys(SCHOOLS).concat(["My school isn’t listed"]),S.school)+'<input type="text" id="so" placeholder="Type your school’s name" style="display:none;margin-top:8px">'+
+'<label for="gl">Your post-grad goal</label>'+sel("gl",GOALS,S.goal)+
+'<label for="ct">Target city</label>'+sel("ct",CITIES,S.city)+
+'<label for="cn">Biggest concern</label>'+sel("cn",CONCERNS,S.concern)+
+'<p><button class="btn gold" id="go" style="margin-top:18px">Start my 100 days</button></p></div>'}
+function sel(id,o,v){var h='<select id="'+id+'">';var arr=Array.isArray(o);for(var k in o){var val=arr?o[k]:k;h+='<option value="'+esc(val)+'"'+(val==v?" selected":"")+'>'+esc(o[k])+"</option>"}return h+"</select>"}
+function dash(){var T=totals(),ph=phase();
+var h='<div class="hero"><h2 style="font-size:1.5rem">'+(S.name?esc(S.name)+", you’re":"You’re")+' on your way to '+esc(S.city)+'</h2><p style="color:var(--mute);margin:4px 0 0">'+esc(S.major||"Senior")+' at '+esc(S.school)+'</p></div>'+
+'<div class="ringwrap">'+ring(T.pct)+'<div class="ringtxt"><b>'+S.day+'</b><span>days to go</span></div></div>'+
+'<div class="stats"><span class="pill">'+T.got+' XP</span><span class="pill">'+T.pct+'% complete</span><span class="pill">'+level(T.pct)+'</span></div>'+
+'<div class="phase"><b>'+ph[0]+'</b><br>'+ph[1]+'</div>'+
+'<nav role="tablist">'+[["road","Roadmap"],["circle","Circle"],["school","My school"],["legacy","Legacy"]].map(function(x){return'<button role="tab" data-tab="'+x[0]+'" aria-selected="'+(S.tab==x[0])+'">'+x[1]+"</button>"}).join("")+"</nav>";
+if(S.tab=="road")h+=road();else if(S.tab=="circle")h+=circle();else if(S.tab=="school")h+=school();else h+=legacy(T);
+h+='<div class="demo"><label for="dy" style="margin:0 0 4px;font-weight:400">Demo: jump to day '+S.day+'</label><input type="range" id="dy" min="1" max="100" value="'+S.day+'"></div>'+
+'<p class="note">Prototype by The Incredible Innovators, with sample data. <button class="msg" id="rs" style="margin:0 0 0 6px">Reset</button></p>';return h}
+function road(){return cats().map(function(c){var n=0;c.t.forEach(function(t){if(S.done[c.id+t[0]])n++});var all=n==c.t.length;
+return'<div class="card cat"><h3>'+c.n+(all?' <span class="badge">Badge earned</span>':' <small>'+n+" of "+c.t.length+"</small>")+"</h3>"+
+c.t.map(function(t,i){var k=c.id+t[0],d=S.done[k];return'<label class="task'+(d?" done":"")+'" style="margin:0;font-weight:400"><input type="checkbox" data-k="'+i+'" data-c="'+c.id+'"'+(d?" checked":"")+'><span class="t">'+esc(t[0])+'</span><span class="xp">+'+t[1]+" XP</span></label>"}).join("")+"</div>"}).join("")}
+function circle(){var m=CAREER[S.goal];
+function p(i,n,s,b){return'<div class="person"><div class="av">'+i+'</div><div><p><b>'+esc(n)+'</b></p><p class="s">'+esc(s)+'</p></div><button class="msg" data-msg="'+esc(n)+'">'+b+"</button></div>"}
+return'<div class="card"><h3>Your career mentor</h3>'+p(m[0].charAt(0),m[0],m[1]+" in "+S.city+", "+S.school+" alum","Message")+"</div>"+
+'<div class="card"><h3>Your life-experience mentor</h3>'+p("J","Jordan Wells ’14","First-generation grad who moved to "+S.city,"Message")+"</div>"+
+'<div class="card"><h3>Your Peer Circle</h3><p style="color:var(--mute);margin:4px 0">Seniors heading to '+esc(S.city)+'. Check in on each other’s milestones.</p>'+PEERS.map(function(x){return p(x[0].charAt(0),x[0],x[1]+", moving to "+S.city,"Nudge")}).join("")+"</div>"}
+function school(){var d=SCHOOLS[S.school]||{};var list=RES.concat(d.partner?[["Partner perk","Alumni mentor pool synced into Century Mark"]]:[]);
+return'<div class="card"><h3>'+esc(S.school)+(d.partner?' <span class="badge">Demo partner</span>':'')+'</h3><p style="color:var(--mute);margin:4px 0 0">Offices your roadmap links to.</p>'+list.map(function(r){return'<div class="person"><div><p><b>'+r[0]+'</b></p><p class="s">'+r[1]+'</p></div></div>'}).join("")+'</div>'+
+'<div class="card"><h3>Bring Century Mark to your school</h3><p style="color:var(--mute)">Universities partner in three steps: share your alumni directory and chapter list, name a career and a counseling contact, and choose your first cohort of seniors.</p><button class="btn gold" id="pt">Request a partnership</button></div>'+'<p class="note">Demo data: partner status and offices are placeholders each school would replace.</p>'}
+function legacy(T){var rows=[["Financial preparedness",Math.min(100,Math.round(totals().pct*1.0))],["Career and relocation readiness",T.pct],["Mentor check-ins",S.mentor?100:40],["Young alumni chapter signups",S.done["proJoin your alumni chapter"]?100:20]];
+return'<div class="card"><h3>Pay it forward</h3><p style="color:var(--mute)">Finish the program, then mentor next year’s seniors and tell them how it shaped your life after graduation.</p>'+
+'<label class="task" style="font-weight:600;margin:0"><input type="checkbox" id="mt"'+(S.mentor?" checked":"")+'><span>I’ll mentor the next class</span></label></div>'+
+'<div class="card"><h3>What we measure</h3>'+rows.map(function(r){return'<div style="margin-top:12px"><span>'+r[0]+'</span><b style="float:right">'+r[1]+'%</b><div class="bar"><i style="width:'+r[1]+'%"></i></div></div>'}).join("")+"</div>"}
+function render(){var a=document.getElementById("app");a.innerHTML=S.step=="start"?start():dash();bind()}
+function bind(){var q=function(s){return document.querySelector(s)};
+if(q("#sc"))q("#sc").onchange=function(){q("#so").style.display=q("#sc").value.indexOf("isn’t")>-1?"block":"none"};
+if(q("#pt"))q("#pt").onclick=function(){toast("Partnership request sent (demo)")};
+if(q("#go"))q("#go").onclick=function(){S.name=q("#nm").value.trim();S.major=q("#mj").value.trim();S.school=q("#sc").value.indexOf("isn’t")>-1?(q("#so").value.trim()||"My school"):q("#sc").value;S.goal=q("#gl").value;S.city=q("#ct").value;S.concern=q("#cn").value;S.step="dash";S.done={};S.day=100;save();render();toast("Roadmap built. Let’s go.")};
+document.querySelectorAll("[data-tab]").forEach(function(b){b.onclick=function(){S.tab=b.dataset.tab;save();render()}});
+document.querySelectorAll(".task input[data-c]").forEach(function(i){i.onchange=function(){var c=cats().filter(function(x){return x.id==i.dataset.c})[0],t=c.t[i.dataset.k],k=c.id+t[0];var before=totals().pct;if(i.checked){S.done[k]=1;toast("+"+t[1]+" XP. Nice work.")}else delete S.done[k];save();render();if(before<100&&totals().pct>=100)toast("Century Mark reached!")}});
+if(q("#dy"))q("#dy").oninput=function(e){S.day=+e.target.value;save();render();q("#dy").focus()};
+if(q("#mt"))q("#mt").onchange=function(e){S.mentor=e.target.checked;save();render();if(S.mentor)toast("Thank you for giving back.")};
+if(q("#rs"))q("#rs").onclick=function(){S={step:"start",day:100,done:{},tab:"road",mentor:false,name:"",major:"",school:"Howard University",goal:"corp",city:"Atlanta",concern:"money"};save();render()};
+document.querySelectorAll("[data-msg]").forEach(function(b){b.onclick=function(){toast("Message sent to "+b.dataset.msg+" (demo)")}})}
+render();
+</script>
+</body>
+</html>
